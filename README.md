@@ -12,18 +12,11 @@ mismo diseño Fluent, mismo sistema de pestañas, mismos atajos, misma barra de 
 Pero escrito desde cero en **Rust + Tauri**, sin una línea de UWP.
 
 [![CI](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml/badge.svg)](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/buntaroumori/NotepadsLinux?label=última%20versión&sort=semver)](https://github.com/buntaroumori/NotepadsLinux/releases)
-[![Descargas](https://img.shields.io/github/downloads/buntaroumori/NotepadsLinux/total)](https://github.com/buntaroumori/NotepadsLinux/releases)
-[![Licencia](https://img.shields.io/github/license/buntaroumori/NotepadsLinux)](LICENSE)
+[![Última Versión](https://img.shields.io/badge/versi%C3%B3n-v1.0.0-blue)](https://github.com/buntaroumori/NotepadsLinux/releases)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-green)](LICENSE)
 [![Plataforma](https://img.shields.io/badge/plataforma-Linux-blue)](#requisitos)
 
 </div>
-
-[![CI](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml/badge.svg)](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/buntaroumori/NotepadsLinux?label=última%20versión&sort=semver)](https://github.com/buntaroumori/NotepadsLinux/releases)
-[![Descargas](https://img.shields.io/github/downloads/buntaroumori/NotepadsLinux/total)](https://github.com/buntaroumori/NotepadsLinux/releases)
-[![Licencia](https://img.shields.io/github/license/buntaroumori/NotepadsLinux)](LICENSE)
-[![Plataforma](https://img.shields.io/badge/plataforma-Linux-blue)](#requisitos)
 
 ---
 
