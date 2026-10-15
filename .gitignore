@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# rust / tauri
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# build output
+dist/
+bundle/
+*.AppImage
+*.deb
+*.rpm
+*.tar.gz
+
+# editors / os
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# local scratch
+_tmp/

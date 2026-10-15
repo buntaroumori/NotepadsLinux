@@ -1,0 +1,25 @@
+{
+  "name": "notepads-for-linux",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A modern, lightweight text editor with a minimalist design. Linux-native remake of the Windows Notepads app, built with Tauri.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "bundle": "tauri build --bundles deb,rpm,appimage",
+    "serve": "node scripts/serve.mjs",
+    "demo": "node scripts/build-demo.mjs",
+    "icons": "python3 scripts/make-icons.py",
+    "test": "node --test tests/",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "jsdom": "^29.1.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

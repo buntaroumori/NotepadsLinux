@@ -1,0 +1,46 @@
+# NOTICE
+
+## Relationship to the original Notepads
+
+**Notepads for Linux** is a clean-room, ground-up re-implementation for GNU/Linux
+of the *behaviour* and *visual design language* of **Notepads**, the UWP/WinUI text
+editor for Windows created by **Jackie (Jiaqi) Liu**.
+
+- Original project: https://github.com/0x7c13/Notepads
+- Original license: MIT License — Copyright (c) 2019-2024 Jackie (Jiaqi) Liu
+- Original application website: https://www.notepadsapp.com/
+
+What this means in practice:
+
+1. **No C#/XAML source code was copied.** The original is written in C# + XAML for
+   UWP; this project is Rust + HTML/CSS/JavaScript for Tauri. There is no line of
+   shared code, and there cannot be, because the platforms and languages differ.
+2. The original repository was studied as *documentation*: the README (feature list,
+   keyboard shortcuts), the localized string resources (menu / dialog / status bar
+   labels) and the public screenshots were used to reproduce the feature inventory,
+   the UI layout and the colour palette. That study is written down in
+   `docs/REVERSE_ENGINEERING.md`.
+3. Names, labels and keyboard shortcuts follow the original so that muscle memory
+   transfers. Any UI text reproduced verbatim comes from the original project's
+   MIT-licensed resource files.
+4. This project is **not affiliated with, endorsed by, or supported by** the author
+   of Notepads. Bug reports about this Linux remake must not be filed against the
+   original project.
+
+## Icons
+
+The application icon shipped in `src-tauri/icons/` is an original artwork generated
+for this project by `scripts/make-icons.py`.
+
+Toolbar/menu glyphs are original 16×16 stroke icons authored for this project in
+`src/icons.js`, inspired by the *Codicons* icon set (© Microsoft Corporation,
+MIT License) that the original application uses through the Windows Community
+Toolkit.
+
+## Fonts and assets
+
+No third-party fonts are bundled. The UI uses whatever the system provides
+(Segoe UI Variable if present, otherwise Cantarell / Inter / Noto Sans), and the
+editor prefers Cascadia Code → Consolas → JetBrains Mono → DejaVu Sans Mono.
+
+The screenshots in `docs/screenshots/` are of this project, not of the original.

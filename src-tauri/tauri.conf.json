@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Notepads for Linux",
+  "version": "1.0.0",
+  "identifier": "io.github.notepads-linux",
+  "build": {
+    "frontendDist": "../src",
+    "devUrl": "http://localhost:5178",
+    "beforeDevCommand": "node scripts/serve.mjs",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb", "rpm", "appimage"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Utility",
+    "shortDescription": "A modern, lightweight text editor with a minimalist design.",
+    "longDescription": "Notepads for Linux is a Fluent-design text editor with a built-in tab system, session restore, encoding detection, Markdown-ready plain text editing and a keyboard-first workflow. It is an independent Linux remake of the Windows Notepads app.",
+    "copyright": "MIT licensed. Independent remake of Notepads by Jackie (Jiaqi) Liu.",
+    "linux": {
+      "deb": {
+        "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0"]
+      },
+      "rpm": {
+        "depends": ["webkit2gtk4.1", "gtk3"]
+      },
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "fileAssociations": [
+      {
+        "ext": ["txt", "log", "ini", "conf", "cfg", "properties", "env"],
+        "name": "Plain text",
+        "description": "Plain text document",
+        "role": "Editor",
+        "mimeType": "text/plain"
+      },
+      {
+        "ext": ["md", "markdown"],
+        "name": "Markdown",
+        "description": "Markdown document",
+        "role": "Editor",
+        "mimeType": "text/markdown"
+      },
+      {
+        "ext": ["json", "yml", "yaml", "toml", "xml", "csv", "sh", "rs", "js", "ts", "py", "c", "h", "cpp"],
+        "name": "Source file",
+        "description": "Text based source or data file",
+        "role": "Editor"
+      }
+    ],
+    "createUpdaterArtifacts": false
+  }
+}

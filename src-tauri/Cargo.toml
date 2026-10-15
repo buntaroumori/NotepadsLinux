@@ -1,0 +1,40 @@
+[package]
+name = "notepads-for-linux"
+version = "1.0.0"
+description = "A modern, lightweight text editor with a minimalist design. Linux-native remake of the Windows Notepads app."
+authors = ["Notepads for Linux contributors"]
+edition = "2021"
+rust-version = "1.77"
+license = "MIT"
+readme = "../README.md"
+repository = "https://github.com/notepads-linux/notepads-for-linux"
+default-run = "notepads-for-linux"
+
+[lib]
+name = "notepads_for_linux_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["devtools"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+base64 = "0.22"
+
+[features]
+# `tray` pulls in libayatana-appindicator (Linux) for the system tray icon.
+# Build with `--no-default-features` on systems that do not have it installed.
+default = ["tray"]
+tray = ["tauri/tray-icon"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
