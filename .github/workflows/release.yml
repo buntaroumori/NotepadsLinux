@@ -1,0 +1,142 @@
+name: Release
+
+# Publicar una versión es: subir un tag (git tag v1.0.0 && git push origin v1.0.0).
+# Este workflow compila, ejecuta los tests, crea el GitHub Release y adjunta
+# los paquetes .deb, .rpm y .AppImage con checksums SHA-256.
+#
+# También se puede lanzar a mano desde la pestaña Actions (workflow_dispatch).
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag existente sobre el que publicar (ej. v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Puerta de calidad: nada se publica sin pasar los tests.
+  # ---------------------------------------------------------------------------
+  verify:
+    name: Tests previos
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dependencias del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev \
+            libayatana-appindicator3-dev librsvg2-dev patchelf
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - run: npm ci --no-audit --no-fund
+      - name: Tests del frontend
+        run: npm test
+      - name: Iconos (los necesita el build de Rust)
+        run: |
+          python3 -m pip install --user pillow
+          python3 scripts/make-icons.py
+      - name: Formato y lints
+        run: |
+          cargo fmt --manifest-path src-tauri/Cargo.toml -- --check
+          cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+      - name: Tests del backend
+        run: cargo test --manifest-path src-tauri/Cargo.toml
+
+  # ---------------------------------------------------------------------------
+  # Compilación y publicación de los paquetes.
+  # ---------------------------------------------------------------------------
+  publish:
+    name: Paquetes (${{ matrix.arch }})
+    needs: verify
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: ubuntu-22.04
+            arch: x86_64
+          # Los runners ARM de GitHub son gratuitos en repositorios públicos.
+          # Si tu cuenta o región no los tiene, borra estas dos líneas: el
+          # release x86_64 se publica igualmente.
+          - platform: ubuntu-22.04-arm
+            arch: aarch64
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dependencias del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev \
+            libayatana-appindicator3-dev librsvg2-dev patchelf rpm file
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Iconos
+        run: |
+          python3 -m pip install --user pillow
+          python3 scripts/make-icons.py
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Compilar y subir al Release
+        id: tauri
+        uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # __VERSION__ lo sustituye la acción por la versión de tauri.conf.json
+          tagName: ${{ github.event.inputs.tag || github.ref_name }}
+          releaseName: 'Notepads for Linux v__VERSION__'
+          releaseDraft: false
+          prerelease: false
+          generateReleaseNotes: true
+          # Nombres de archivo sin espacios, fáciles de escribir con wget/curl.
+          releaseAssetNamePattern: 'notepads-for-linux_[version]_[arch].[ext]'
+          args: --bundles deb,rpm,appimage
+
+      - name: Checksums SHA-256
+        if: matrix.arch == 'x86_64'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd src-tauri/target/release/bundle
+          find . -type f \( -name '*.deb' -o -name '*.rpm' -o -name '*.AppImage' \) -print0 \
+            | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+          gh release upload "${{ github.event.inputs.tag || github.ref_name }}" \
+            SHA256SUMS.txt --clobber
+
+      - name: Resumen del job
+        run: |
+          echo "### Paquetes generados (${{ matrix.arch }})" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          find src-tauri/target/release/bundle -type f \
+            \( -name '*.deb' -o -name '*.rpm' -o -name '*.AppImage' \) \
+            -printf '%f  (%s bytes)\n' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
