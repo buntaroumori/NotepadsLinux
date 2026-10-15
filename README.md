@@ -11,13 +11,19 @@ Es una reimplementación libre, para escritorio Linux, del editor
 mismo diseño Fluent, mismo sistema de pestañas, mismos atajos, misma barra de estado.
 Pero escrito desde cero en **Rust + Tauri**, sin una línea de UWP.
 
-[![CI](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/TU_USUARIO/TU_REPO?label=última%20versión&sort=semver)](https://github.com/TU_USUARIO/TU_REPO/releases)
-[![Descargas](https://img.shields.io/github/downloads/TU_USUARIO/TU_REPO/total)](https://github.com/TU_USUARIO/TU_REPO/releases)
-[![Licencia](https://img.shields.io/github/license/TU_USUARIO/TU_REPO)](LICENSE)
+[![CI](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml/badge.svg)](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/buntaroumori/NotepadsLinux?label=última%20versión&sort=semver)](https://github.com/buntaroumori/NotepadsLinux/releases)
+[![Descargas](https://img.shields.io/github/downloads/buntaroumori/NotepadsLinux/total)](https://github.com/buntaroumori/NotepadsLinux/releases)
+[![Licencia](https://img.shields.io/github/license/buntaroumori/NotepadsLinux)](LICENSE)
 [![Plataforma](https://img.shields.io/badge/plataforma-Linux-blue)](#requisitos)
 
 </div>
+
+[![CI](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml/badge.svg)](https://github.com/buntaroumori/NotepadsLinux/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/buntaroumori/NotepadsLinux?label=última%20versión&sort=semver)](https://github.com/buntaroumori/NotepadsLinux/releases)
+[![Descargas](https://img.shields.io/github/downloads/buntaroumori/NotepadsLinux/total)](https://github.com/buntaroumori/NotepadsLinux/releases)
+[![Licencia](https://img.shields.io/github/license/buntaroumori/NotepadsLinux)](LICENSE)
+[![Plataforma](https://img.shields.io/badge/plataforma-Linux-blue)](#requisitos)
 
 ---
 
@@ -119,7 +125,7 @@ viven en memoria. Para eso está la aplicación real.
 ### Instalar de forma permanente
 
 ```bash
-git clone https://github.com/TU_USUARIO/TU_REPO.git
+git clone https://github.com/buntaroumori/NotepadsLinux.git
 cd notepads-for-linux
 ./scripts/install.sh
 ```

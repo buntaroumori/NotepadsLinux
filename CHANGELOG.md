@@ -72,4 +72,4 @@ completo para Linux.
 - El botón `+` de nueva pestaña aparecía centrado en la barra en lugar de ir pegado a
   la última pestaña (la franja de pestañas crecía en vez de encogerse).
 
-[1.0.0]: https://github.com/TU_USUARIO/TU_REPO/releases/tag/v1.0.0
+[1.0.0]: https://github.com/buntaroumori/NotepadsLinux/releases/tag/v1.0.0
