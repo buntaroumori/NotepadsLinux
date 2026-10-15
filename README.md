@@ -11,10 +11,11 @@ Es una reimplementación libre, para escritorio Linux, del editor
 mismo diseño Fluent, mismo sistema de pestañas, mismos atajos, misma barra de estado.
 Pero escrito desde cero en **Rust + Tauri**, sin una línea de UWP.
 
+[![CI](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/TU_USUARIO/TU_REPO?label=última%20versión&sort=semver)](https://github.com/TU_USUARIO/TU_REPO/releases)
+[![Descargas](https://img.shields.io/github/downloads/TU_USUARIO/TU_REPO/total)](https://github.com/TU_USUARIO/TU_REPO/releases)
+[![Licencia](https://img.shields.io/github/license/TU_USUARIO/TU_REPO)](LICENSE)
 [![Plataforma](https://img.shields.io/badge/plataforma-Linux-blue)](#requisitos)
-&nbsp;[![Licencia](https://img.shields.io/badge/licencia-MIT-green)](LICENSE)
-&nbsp;[![Backend](https://img.shields.io/badge/backend-Tauri%202-orange)](#arquitectura)
-&nbsp;[![Tests](https://img.shields.io/badge/tests-11%20passing-brightgreen)](#tests)
 
 </div>
 
@@ -118,7 +119,7 @@ viven en memoria. Para eso está la aplicación real.
 ### Instalar de forma permanente
 
 ```bash
-git clone https://github.com/notepads-linux/notepads-for-linux.git
+git clone https://github.com/TU_USUARIO/TU_REPO.git
 cd notepads-for-linux
 ./scripts/install.sh
 ```

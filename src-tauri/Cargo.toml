@@ -7,7 +7,7 @@ edition = "2021"
 rust-version = "1.77"
 license = "MIT"
 readme = "../README.md"
-repository = "https://github.com/notepads-linux/notepads-for-linux"
+repository = "https://github.com/TU_USUARIO/TU_REPO"
 default-run = "notepads-for-linux"
 
 [lib]
